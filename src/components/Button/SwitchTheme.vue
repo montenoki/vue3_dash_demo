@@ -22,5 +22,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <n-button @click="switchTheme">{{ theme_name }}</n-button>
+  <n-button @click="switchTheme">{{
+    $t(theme_name === "light" ? "button.dark" : "button.light")
+  }}</n-button>
 </template>
