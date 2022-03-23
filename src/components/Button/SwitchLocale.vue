@@ -1,0 +1,34 @@
+<script lang="ts">
+import { defineComponent } from "vue";
+import { LanguageOutline as LangIcon } from "@vicons/ionicons5";
+
+export default defineComponent({
+  setup() {
+    return {
+      options: [
+        { label: "English", key: "en-US" },
+        { label: "日本語", key: "ja-JP" },
+        { label: "中文", key: "zh-CN" },
+      ],
+    };
+  },
+  methods: {
+    switchLocale(key: string | number) {
+      this.$i18n.locale = String(key);
+    },
+  },
+  components: { LangIcon },
+});
+</script>
+<template>
+  <n-dropdown trigger="hover" :options="options" @select="switchLocale">
+    <n-button>
+      <template #icon>
+        <n-icon>
+          <LangIcon />
+        </n-icon>
+      </template>
+      {{ $t("meta.name") }}
+    </n-button>
+  </n-dropdown>
+</template>
