@@ -26,8 +26,8 @@ const i18n = createI18n({
     legacy: false,
     useScope: "global",
     globalInjection: true,
-    locale: import.meta.env.VUE_APP_LOCALE,
-    fallbackLocale: import.meta.env.VUE_APP_FALLBACK_LOCALE,
+    locale: navigator.language || import.meta.env.VUE_APP_LOCALE || "en-US",
+    fallbackLocale: navigator.language || import.meta.env.VUE_APP_FALLBACK_LOCALE || "en-US",
     messages: loadLocaleMessages(),
     silentTranslationWarn: true
 } as I18nOptions)
