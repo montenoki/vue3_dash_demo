@@ -1,4 +1,7 @@
 {
+    "meta": {
+        "name": "English"
+    },
     "button": {
         "dark": "Dark",
         "light": "Light"

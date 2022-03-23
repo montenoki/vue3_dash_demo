@@ -1,4 +1,7 @@
 {
+    "meta": {
+        "name": "日本語"
+    },
     "button": {
         "light": "ライト",
         "dark": "ダーク"

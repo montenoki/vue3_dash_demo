@@ -1,4 +1,7 @@
 {
+    "meta":{
+        "name":"中文"
+    },
     "button": {
         "dark": "深色",
         "light": "浅色"
