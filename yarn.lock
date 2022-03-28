@@ -305,7 +305,7 @@
     "@vue/compiler-dom" "3.2.31"
     "@vue/shared" "3.2.31"
 
-"@vue/devtools-api@^6.0.0", "@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.0.0-beta.13":
+"@vue/devtools-api@^6.0.0", "@vue/devtools-api@^6.0.0-beta.13", "@vue/devtools-api@^6.1.0":
   version "6.1.3"
   resolved "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.1.3.tgz"
   integrity sha512-79InfO2xHv+WHIrH1bHXQUiQD/wMls9qBk6WVwGCbdwP7/3zINtvqPNMtmSHXsIKjvUAHc8L0ouOj6ZQQRmcXg==
@@ -1039,6 +1039,14 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3:
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
+pinia@^2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/pinia/-/pinia-2.0.12.tgz#4c6f7f59cb41f56f20deee71c403e66d8d3c637d"
+  integrity sha512-tUeuYGFrLU5irmGyRAIxp35q1OTcZ8sKpGT4XkPeVcG35W4R6cfXDbCGexzmVqH5lTQJJTXXbNGutIu9yS5yew==
+  dependencies:
+    "@vue/devtools-api" "^6.1.0"
+    vue-demi "*"
+
 postcss@^8.1.10, postcss@^8.4.6:
   version "8.4.12"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.12.tgz"
@@ -1489,6 +1497,11 @@ vue-axios@^3.4.1:
   resolved "https://registry.npmjs.org/vue-axios/-/vue-axios-3.4.1.tgz"
   integrity sha512-8YZYUOQrBEJktxoQtrM4rr2LfVcDaWfJqv8MqtLlgLlkuBvCYKFSZSo6AXQ4YcCzdgccDqstmuaEh68lcH9xWA==
 
+vue-demi@*:
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.4.tgz#420dd17628f95f1bbce1102ad3c51074713a8049"
+  integrity sha512-ztPDkFt0TSUdoq1ZI6oD730vgztBkiByhUW7L1cOTebiSBqSYfSQgnhYakYigBkyAybqCTH7h44yZuDJf2xILQ==
+
 vue-i18n@^9.2.0-beta.32:
   version "9.2.0-beta.32"
   resolved "https://registry.npmjs.org/vue-i18n/-/vue-i18n-9.2.0-beta.32.tgz"
@@ -1537,13 +1550,6 @@ vueuc@^0.4.27:
     seemly "^0.3.1"
     vdirs "^0.1.4"
     vooks "^0.2.4"
-
-vuex@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.0.2.tgz#f896dbd5bf2a0e963f00c67e9b610de749ccacc9"
-  integrity sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
-  dependencies:
-    "@vue/devtools-api" "^6.0.0-beta.11"
 
 webpack-virtual-modules@^0.4.3:
   version "0.4.3"

@@ -13,8 +13,8 @@ export default defineComponent({
     };
   },
   methods: {
-    switchLocale(key: string | number) {
-      this.$i18n.locale = String(key);
+    switchLocale(key: string) {
+      this.$i18n.locale = key;
     },
   },
   components: { LangIcon },

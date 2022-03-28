@@ -6,10 +6,8 @@ export const useStore = defineStore('counter', {
       themeName: "light",
     }
   },
-  // could also be defined as
-  // state: () => ({ count: 0 })
   actions: {
-    changeTheme(theme: string) {
+    updateTheme(theme: string) {
       this.themeName = theme
     },
   },

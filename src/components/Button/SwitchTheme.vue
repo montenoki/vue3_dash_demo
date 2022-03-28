@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import { DarkTheme20Regular as ThemeIcon } from "@vicons/fluent";
-import {storeToRefs} from 'pinia'
-import { useStore } from '../../store';
+import { storeToRefs } from "pinia";
+import { useStore } from "../../store";
 
-const themeLabel = {
-  dark: "button.light",
-  light: "button.dark",
+const store = useStore();
+const { themeName } = storeToRefs(store);
+
+const switchTheme = () => {
+  store.updateTheme(themeName.value === "dark" ? "light" : "dark");
 };
 
-const store = useStore()
-const { themeName } = storeToRefs(store)
-
-const switchTheme = () =>{
-  store.changeTheme(themeName.value === "dark" ? "light" : "dark")
-}
+const getButtonLabel = () => {
+  return themeName.value === "dark" ? "button.light" : "button.dark";
+};
 </script>
 
 <template>
@@ -23,6 +22,6 @@ const switchTheme = () =>{
         <ThemeIcon />
       </n-icon>
     </template>
-    {{ $t(themeLabel[themeName]) }}</n-button
+    {{ $t(getButtonLabel()) }}</n-button
   >
 </template>

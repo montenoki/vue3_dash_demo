@@ -5,7 +5,7 @@ import locale from './language'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'vfonts/FiraCode.css'
-import {createPinia} from 'pinia'
+import { createPinia } from 'pinia'
 
 const pinia = createPinia()
 

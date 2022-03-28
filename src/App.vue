@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "./store";
-import { storeToRefs } from 'pinia'
-import { useI18n } from 'vue-i18n'
+import { storeToRefs } from "pinia";
+import { useI18n } from "vue-i18n";
 
 import {
   useOsTheme,
@@ -15,43 +15,38 @@ import {
   dateEnUS,
 } from "naive-ui";
 
-const { t, locale } = useI18n({ useScope: 'global' })
-
 const store = useStore();
-const { themeName } = storeToRefs(store)
-const theme_name: string = useOsTheme().value === "dark" ? "dark" : "light";
-const theme = computed(() => (themeName.value === "dark") ? darkTheme : null)
+const { themeName } = storeToRefs(store);
+const theme = computed(() => (themeName.value === "dark" ? darkTheme : null));
 
-const locale_naive = computed(()=>getLocaleModule(locale.value))
-const date_locale = computed(()=>getDateLocaleModule(locale.value))
+const { locale } = useI18n({ useScope: "global" });
+let localeNaive: any,
+  dateLocaleNaive: any = computed(() =>
+    getLocaleModule(locale.value as string)
+  );
 
 function getLocaleModule(locale_name: string) {
   switch (locale_name) {
     case "zh-CN":
-      return zhCN;
+      return { locale: zhCN, dateLocale: dateZhCN };
     case "ja":
-      return jaJP;
+      return { locale: jaJP, dateLocale: dateJaJP };
     default:
-      return enUS;
+      return { locale: enUS, dateLocale: dateEnUS };
   }
 }
 
-function getDateLocaleModule(locale_name: string) {
-  switch (locale_name) {
-    case "zh-CN":
-      return dateZhCN;
-    case "ja":
-      return dateJaJP;
-    default:
-      return dateEnUS;
-  }
-}
-
+onMounted(() => {
+  store.updateTheme(useOsTheme().value === "dark" ? "dark" : "light");
+});
 </script>
 
 <template>
-  <n-config-provider :theme="theme" :locale="locale" :date-locale="date_locale">
-  <!-- <n-config-provider :theme="theme"> -->
+  <n-config-provider
+    :theme="theme"
+    :locale="localeNaive"
+    :date-locale="dateLocaleNaive"
+  >
     <n-global-style />
     <router-view />
   </n-config-provider>
