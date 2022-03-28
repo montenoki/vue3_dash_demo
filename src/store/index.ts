@@ -4,23 +4,25 @@ import { createStore, useStore as baseUseStore, Store } from 'vuex'
 
 
 export interface State {
-    theme_name: string
+    themeName: string
+    count: number
 }
 
 export const key: InjectionKey<Store<State>> = Symbol()
 
 export const store = createStore<State>({
     state: {
-        theme_name: "light",
+        themeName: "light",
+        count: 4,
     },
     getters: {
         getThemeName: (state) => {
-            return state.theme_name
+            return state.themeName
         }
     },
     mutations: {
         updateThemeName(state, payload) {
-            state.theme_name = payload.theme_name
+            state.themeName = payload.themeName
         }
     }
 })

@@ -57,6 +57,7 @@ export default defineComponent({
 
 <template>
   <n-config-provider :theme="theme" :locale="locale" :date-locale="date_locale">
+    <n-global-style />
     <router-view />
   </n-config-provider>
 </template>

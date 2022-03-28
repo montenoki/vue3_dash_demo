@@ -21,7 +21,7 @@ export default defineComponent({
 });
 </script>
 <template>
-  <n-dropdown trigger="hover" :options="options" @select="switchLocale">
+  <n-dropdown trigger="click" :options="options" @select="switchLocale">
     <n-button>
       <template #icon>
         <n-icon>
