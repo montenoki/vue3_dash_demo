@@ -1,32 +1,16 @@
-// store.ts
-import { InjectionKey } from 'vue'
-import { createStore, useStore as baseUseStore, Store } from 'vuex'
+import { defineStore } from 'pinia'
 
-
-export interface State {
-    themeName: string
-    count: number
-}
-
-export const key: InjectionKey<Store<State>> = Symbol()
-
-export const store = createStore<State>({
-    state: {
-        themeName: "light",
-        count: 4,
-    },
-    getters: {
-        getThemeName: (state) => {
-            return state.themeName
-        }
-    },
-    mutations: {
-        updateThemeName(state, payload) {
-            state.themeName = payload.themeName
-        }
+export const useStore = defineStore('counter', {
+  state: () => {
+    return { 
+      themeName: "light",
     }
+  },
+  // could also be defined as
+  // state: () => ({ count: 0 })
+  actions: {
+    changeTheme(theme: string) {
+      this.themeName = theme
+    },
+  },
 })
-
-export function useStore() {
-    return baseUseStore(key)
-}

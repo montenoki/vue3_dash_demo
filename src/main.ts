@@ -4,13 +4,13 @@ import router from './router'
 import locale from './language'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { store, key } from './store'
 import 'vfonts/FiraCode.css'
+import {createPinia} from 'pinia'
 
-
+const pinia = createPinia()
 
 const app = createApp(App)
-    .use(store, key)
+    .use(pinia)
     .use(router)
     .use(locale)
     .use(VueAxios, axios)

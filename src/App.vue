@@ -1,7 +1,9 @@
-<script lang="ts">
-import { mapMutations } from "vuex";
-import { defineComponent, computed } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import { useStore } from "./store";
+import { storeToRefs } from 'pinia'
+import { useI18n } from 'vue-i18n'
+
 import {
   useOsTheme,
   darkTheme,
@@ -13,50 +15,43 @@ import {
   dateEnUS,
 } from "naive-ui";
 
-export default defineComponent({
-  setup() {
-    const theme_name: string = useOsTheme().value === "dark" ? "dark" : "light";
-    useStore().commit("updateThemeName", { theme_name: theme_name });
-  },
-  data() {
-    return {
-      theme: computed(() =>
-        useStore().getters.getThemeName === "dark" ? darkTheme : null
-      ),
-      locale: this.getLocaleModule(this.$i18n.locale),
-      date_locale: this.getDateLocaleModule(this.$i18n.locale),
-    };
-  },
-  methods: {
-    ...mapMutations({
-      updateThemeName: "updateThemeName",
-    }),
-    getLocaleModule(locale_name: string) {
-      switch (locale_name) {
-        case "zh-CN":
-          return zhCN;
-        case "ja":
-          return jaJP;
-        default:
-          return enUS;
-      }
-    },
-    getDateLocaleModule(locale_name: string) {
-      switch (locale_name) {
-        case "zh-CN":
-          return dateZhCN;
-        case "ja":
-          return dateJaJP;
-        default:
-          return dateEnUS;
-      }
-    },
-  },
-});
+const { t, locale } = useI18n({ useScope: 'global' })
+
+const store = useStore();
+const { themeName } = storeToRefs(store)
+const theme_name: string = useOsTheme().value === "dark" ? "dark" : "light";
+const theme = computed(() => (themeName.value === "dark") ? darkTheme : null)
+
+const locale_naive = computed(()=>getLocaleModule(locale.value))
+const date_locale = computed(()=>getDateLocaleModule(locale.value))
+
+function getLocaleModule(locale_name: string) {
+  switch (locale_name) {
+    case "zh-CN":
+      return zhCN;
+    case "ja":
+      return jaJP;
+    default:
+      return enUS;
+  }
+}
+
+function getDateLocaleModule(locale_name: string) {
+  switch (locale_name) {
+    case "zh-CN":
+      return dateZhCN;
+    case "ja":
+      return dateJaJP;
+    default:
+      return dateEnUS;
+  }
+}
+
 </script>
 
 <template>
   <n-config-provider :theme="theme" :locale="locale" :date-locale="date_locale">
+  <!-- <n-config-provider :theme="theme"> -->
     <n-global-style />
     <router-view />
   </n-config-provider>

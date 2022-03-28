@@ -1,26 +1,19 @@
-<script lang="ts">
-import { mapMutations } from "vuex";
-import { useStore } from "../../store";
-import { defineComponent, computed } from "vue";
+<script setup lang="ts">
 import { DarkTheme20Regular as ThemeIcon } from "@vicons/fluent";
+import {storeToRefs} from 'pinia'
+import { useStore } from '../../store';
 
-export default defineComponent({
-  data() {
-    return {
-      theme_name: computed(() => useStore().getters.getThemeName),
-    };
-  },
-  methods: {
-    ...mapMutations({
-      updateThemeName: "updateThemeName",
-    }),
-    switchTheme() {
-      const theme_name = this.theme_name === "light" ? "dark" : "light";
-      this.updateThemeName({ theme_name: theme_name });
-    },
-  },
-  components: { ThemeIcon },
-});
+const themeLabel = {
+  dark: "button.light",
+  light: "button.dark",
+};
+
+const store = useStore()
+const { themeName } = storeToRefs(store)
+
+const switchTheme = () =>{
+  store.changeTheme(themeName.value === "dark" ? "light" : "dark")
+}
 </script>
 
 <template>
@@ -30,6 +23,6 @@ export default defineComponent({
         <ThemeIcon />
       </n-icon>
     </template>
-    {{ $t(theme_name === "light" ? "button.dark" : "button.light") }}</n-button
+    {{ $t(themeLabel[themeName]) }}</n-button
   >
 </template>

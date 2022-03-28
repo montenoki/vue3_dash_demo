@@ -1,25 +1,14 @@
 <script lang="ts">
-import { mapMutations, mapState } from "vuex";
+import { mapMutations } from "vuex";
 import { useStore } from "../../store";
 import { defineComponent, computed } from "vue";
 import { DarkTheme20Regular as ThemeIcon } from "@vicons/fluent";
 
 export default defineComponent({
-  computed: {
-    getThemeName() {
-      return useStore().getters.getThemeName()
-    },
-    get_theme_label(){
-      const label = () => this.getThemeName();
-      return (label === "light") ? "button.dark" : "button.light"
-    }
-  },
   data() {
-    // let theme_name = 
-    // return {
-    //   theme_name,
-    //   theme_label: (theme_name === "light") ? "button.dark" : "button.light"
-    // };
+    return {
+      theme_name: computed(() => useStore().getters.getThemeName),
+    };
   },
   methods: {
     ...mapMutations({
@@ -41,6 +30,6 @@ export default defineComponent({
         <ThemeIcon />
       </n-icon>
     </template>
-    {{ $t(theme_label) }}</n-button
+    {{ $t(theme_name === "light" ? "button.dark" : "button.light") }}</n-button
   >
 </template>
